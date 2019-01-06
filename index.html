@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>API Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,10 +198,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,295 +210,416 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-        </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#agent-api" class="toc-h1 toc-link" data-title="Agent API">Agent API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#signup-and-setting-campaign" class="toc-h2 toc-link" data-title="Signup and setting campaign">Signup and setting campaign</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#tools-amp-library" class="toc-h2 toc-link" data-title="Tools &amp; Library">Tools &amp; Library</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#endpoints" class="toc-h2 toc-link" data-title="Endpoints">Endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#conversation-list-api-tutorial-with-graphiql" class="toc-h2 toc-link" data-title="Conversation list API Tutorial with GraphiQL">Conversation list API Tutorial with GraphiQL</a>
+                  </li>
+                  <li>
+                    <a href="#agent-api-with-python-example" class="toc-h2 toc-link" data-title="Agent API with Python Example">Agent API with Python Example</a>
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='agent-api'>Agent API</h1><h2 id='signup-and-setting-campaign'>Signup and setting campaign</h2>
+<ul>
+<li>  You should see <a href="https://docs.google.com/document/d/1mfgtknMbnzDL6sKBKDOtWC0cnHwX59NT5nqWISqQZCE/edit#heading=h.ubhpu5uvlrg1">Alli onboarding document</a>.</li>
+</ul>
+<h2 id='tools-amp-library'>Tools &amp; Library</h2>
+<p>GraphQL is implemented over standard HTTP and websocket. So you can choose any http, websocket library like python requests.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<ul>
+<li>A graphical interative in-brower GraphQL IDE : <a href="https://github.com/graphql/graphiql">https://github.com/graphql/graphiql<br>
+</a></li>
+<li>  Python Library : <a href="https://github.com/graphql-python/gql">https://github.com/graphql-python/gql</a></li>
+<li>  Java Library : <a href="https://github.com/apollographql/apollo-android">https://github.com/apollographql/apollo-android</a></li>
+<li>  Node Library : <a href="https://github.com/apollographql/apollo-client">https://github.com/apollographql/apollo-client</a></li>
+<li>  Python websocket library : <a href="https://pypi.org/project/websocket-client/">https://pypi.org/project/websocket-client/</a></li>
+</ul>
+<h2 id='endpoints'>Endpoints</h2>
+<ul>
+<li>GRAPHQL_ENDPOINT: <a href="https://backend.alli.ai/d/graphql/">https://backend.alli.ai/d/graphql/</a></li>
+</ul>
+<h2 id='conversation-list-api-tutorial-with-graphiql'>Conversation list API Tutorial with GraphiQL</h2><h3 id='prerequisite'>Prerequisite</h3>
+<ol>
+<li><p>Download :
+Please download Graphiql from <a href="https://github.com/graphql/graphiql">here</a></p></li>
+<li><p>Set the Endpoint to <a href="https://backend.alli.ai/d/graphql/">https://backend.alli.ai/d/graphql/</a></p></li>
+</ol>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p><img src="images/end_point.png" alt="End point" /></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ol>
+<li>You need get a token to access to the conversation list. You can get the token through the login mutation.
+<code>
+mutation m {
+login(email: &quot;YOUR_EMAIL&quot;, password: &quot;YOUR_PASSWORD&quot;) {
+token
+}
+}
+</code></li>
+<li>Please put the token in HTTP header after clicking &quot;Edit HTTP Headers&quot; button. Header name is AUTHORIZATION and put the token in header value.</li>
+</ol>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p><img src="images/http_header.png" alt="Http header" /></p>
+<h3 id='getting-the-conversations-list'>Getting the conversations list</h3>
+<ol>
+<li>Retrieve conversations list by the following query.</li>
+</ol>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<p><img src="images/conversations.png" alt="Conversations" /></p>
+<pre class="highlight plaintext"><code>query getConversations {
+  conversations(filter: {}, first: 5) {
+    edges {
+      node {
+        id
+        campaign {
+          id
+        }
+        user {
+          ownUserId
+        }
+        chats {
+          edges {
+            node {
+              ... on UserChat {
+                message
+              }
+              ... on AgentChat {
+                message
+                agent {
+                  name
+                }
+              }
+              ... on BotChat {
+                message
+                createdAt
+                chatOptions
+              }
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<ol>
+<li>If you want to get more fields you can simply add field name in the query.
+Re: all the available field names and types, you can check it in the schema section.</li>
+</ol>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p><img src="images/campaign_types.png" alt="Campaign types" /></p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<p>For example, if you want to get more fields, such as name and description of the campaign in each conversation, you can simply put them in the query.</p>
+<pre class="highlight plaintext"><code>query getConversations {
+  conversations(filter: {}, first: 5) {
+    edges {
+      node {
+        id
+        campaign {
+          id
+          name
+          description
+        }
+        user {
+          ownUserId
+        }
+        chats {
+          edges {
+            node {
+              ... on UserChat {
+                message
+              }
+              ... on AgentChat {
+                message
+                agent {
+                  name
+                }
+              }
+              ... on BotChat {
+                message
+                createdAt
+                chatOptions
+              }
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<ol>
+<li>Retrieving conversations query takes the following parameters.
+To see the detailed type specification of each parameters, please take a look at the schema documentation in GraphiQL.</li>
+</ol>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p><img src="images/documentation.png" alt="Documentation" /></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li>filter
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<ul>
+<li>filter takes the following 6 parameters
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<ul>
+<li>campaignIds: list of campaign ids</li>
+<li>userIds: list of user ids</li>
+<li>state: one of the following ENUMs
+
+<ul>
+<li>INIT</li>
+<li>END_OF_CHATBOT</li>
+<li>END_BY_AGENT</li>
+<li>END_BY_USER</li>
+<li>WAIT_AGENT</li>
+<li>WAIT_USER_ANSWER</li>
+<li>WAIT_USER_ANSWER_2</li>
+<li>INTERRUPTED</li>
+</ul></li>
+<li>startAt_Gte: greater than the start date</li>
+<li>endAt_Gte: lower than the end date</li>
+<li>searchTerm: user&#39;s first name or last name</li>
+</ul></li>
+</ul></li>
+<li>order: one of the following self explanatory ENUMs
+
+<ul>
+<li>CREATED_AT_ASC</li>
+<li>CREATED_AT_DESC</li>
+<li>MODIFIED_AT_ASC</li>
+<li>MODIFIED_AT_DESC</li>
+<li>LAST_CHAT_TIME_ASC</li>
+<li>LAST_CHAT_TIME_DESC</li>
+<li>CAMPAIGN_NAME_ASC</li>
+<li>CAMPAIGN_NAME_DESC</li>
+</ul></li>
+<li>before: ID for pagination. The result will only contain items before the id.</li>
+<li>after: ID for pagination. The result will only contain items after the id.</li>
+<li>first: int. The number of items from the beginning of the result.</li>
+<li>last: int. The number of items from the end of the result.</li>
+</ul>
+<h3 id='query-with-the-parameters'>Query with the parameters.</h3>
+<ul>
+<li>Retrieving the conversations list for the specific campaign.
+You can get the campaign id from the url.
+https://www.alli.ai/campaigns/CAMPAIGN_ID</li>
+</ul>
+
+<p>For example, if you want to get the 3 conversations with the following conditions:
+- the campaign id is Q2FtcGFpZ246NWI5MzBjNGRmOWNhY2MwMjI4MGQ5OWY3
+- the user&#39;s name is Pocoyo</p>
+
+<p>The query would look like</p>
+<pre class="highlight plaintext"><code>query getConversations {
+  conversations(filter: {searchTerm: "Pocoyo", campaignIds: ["Q2FtcGFpZ246NWI5MzBjNGRmOWNhY2MwMjI4MGQ5OWY3"]}, first: 3) {
+    edges {
+      node {
+        id
+        campaign {
+          id
+        }
+        user {
+          id
+          firstName
+          ownUserId
+        }
+        chats {
+          edges {
+            node {
+              ... on UserChat {
+                message
+              }
+              ... on AgentChat {
+                message
+                agent {
+                  name
+                }
+              }
+              ... on BotChat {
+                message
+                createdAt
+                chatOptions
+              }
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 </code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p><img src="images/query_with_params.png" alt="Query with params" /></p>
+<h2 id='agent-api-with-python-example'>Agent API with Python Example</h2>
+<p>You can get api lists and arguments, fields using graphiql tool. Please see graphiql&#39;s Document section.
+<img src="images/graphiql_document.png" alt="Graphiql document" /></p>
+<h3 id='full-example'>Full example</h3>
+<ul>
+<li>Please see example https://github.com/allganize/documents/blob/master/alli_api/agent_api_example.py</li>
+</ul>
+<h3 id='login'>Login</h3>
+<p>You can get authorization token using signin mutation.
+And you can use agent permission apis using this token by sending AUTHORIZATION http header.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p><strong>Example</strong></p>
+<pre class="highlight plaintext"><code>gql = """
+mutation signin($email:String!, $passwd:String!) {
+  login(email:$email, password:$passwd) {
+    token
+  }
+}
+"""
+variables = {
+  "email": "",
+  "passwd": ""
+}
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+token = execute_gql(GRAPHQL_ENDPOINT, gql, variables=variables)['login']['token']
+auth_headers = {
+  'AUTHORIZATION': token
+}
+</code></pre><h3 id='get-campaigns'>Get Campaigns</h3>
+<p>You can get campaign lists using campaigns query.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p><strong>Get Campaigns Example</strong></p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p>Please see graphql relay spec. https://facebook.github.io/relay/graphql/connections.htm</p>
+<pre class="highlight plaintext"><code>gql = """
+query getCampaigns($filter:CampaignFilter) {
+  campaigns(filter:$filter) {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+  }
+}
+"""
+variables = {
+}
+
+campaigns = execute_gql(GRAPHQL_ENDPOINT, gql, variables=variables, headers=auth_headers)['campaigns']['edges']
+for campaign in campaigns:
+  id = campaign['node']['id']
+  name = campaign['node']['name']
+  print(f"{id}, {name}")
+
+</code></pre><h3 id='get-conversations'>Get Conversations</h3>
+<p>You can get campaign lists using campaigns query.</p>
+
+<p><strong>Note</strong>  Conversation list is very long. So please set first or last parameter. </p>
+
+<p>Please see graphql relay spec. https://facebook.github.io/relay/graphql/connections.htm</p>
+
+<p><strong>Get Conversations Example</strong></p>
+<pre class="highlight plaintext"><code>gql = """
+query getConversations($filter:ConversationFilterInput, $limit:Int) {
+  conversations(filter:$filter, first:$limit) {
+    edges {
+      node {
+        id
+        user {
+          ownUserId
+        }
+        chats {
+          edges {
+            node {
+              ... on UserChat {
+                message
+              }
+              ... on AgentChat {
+                message
+                agent {
+                  name
+                }
+              }
+              ... on BotChat {
+                message
+                createdAt
+                chatOptions
+              }
+              __typename
+            }
+          }
+        }
+      }
+    }
+  }
+}
+"""
+variables = {
+  "limit": 10  # Please add limit. see
+}
+conversations = execute_gql(GRAPHQL_ENDPOINT, gql,
+              variables=variables,
+              headers=auth_headers)['conversations']['edges']
+for conv in conversations:
+  conv = conv['node']
+  id = conv['id']
+  user = conv['user']['ownUserId']
+  print(f"ConvId({id}), User({user})")
+  for chat in conv['chats']['edges']:
+    typename, message, options = get_plain_text(chat['node'])
+    print(f"\t{typename} : {message}, {options}")
+</code></pre><h3 id='get-user-lists'>Get User lists</h3><pre class="highlight plaintext"><code>gql = """
+query getUsers($filter:UserFilter, $limit:Int) {
+  users(filter:$filter, first:$limit) {
+    edges {
+      node {
+        ownUserId
+        name
+        online
+        variables {
+          edges {
+            node {
+              id
+              name
+            }
+            value
+            readOnly
+          }
+        }
+      }
+    }
+  }
+}
+"""
+# You can add UserFilter.
+variables = {
+  "limit": 10  # Please add limit. see
+}
+users = execute_gql(GRAPHQL_ENDPOINT, gql,
+          variables=variables,
+          headers=auth_headers)['users']['edges']
+for user in users:
+  user = user['node']
+  id = user['ownUserId']
+  name = user['name']
+  print(f"Id({id}), Name({name})")
 </code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
-
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-          </div>
       </div>
     </div>
   </body>

@@ -1,0 +1,165 @@
+<h1 id='alli-api-document'>Alli API Document</h1><h2 id='make-campaign'>Make campaign</h2>
+<ul>
+<li>  You should see <a href="https://docs.google.com/document/d/1mfgtknMbnzDL6sKBKDOtWC0cnHwX59NT5nqWISqQZCE/edit#heading=h.ubhpu5uvlrg1">Alli onboarding document</a>.</li>
+</ul>
+<h2 id='check-your-api-key'>Check your API Key</h2>
+<ul>
+<li>You can find your API key by selecting “Settings” from the left navigation:<br>
+<img src="https://lh5.googleusercontent.com/oMS8pHElzfdZF_mRKTYJIFXdrnpPtsRaxVWedewbZtwyaHXt1SobBjMRArV8bb2IcyUv5WVzuGViFSw80G41PEyldmPUBdgzIISW_QEU4gq__CA1n52ccIigQhyIouhyQ2siqs1_" alt="Oms8phelzfdzf mrktyjifxdrnpptsraxvwedewbztwyahxt1sobbjmrarv8bb2icyuv5wvzugvifsw80g41peyldmpubdgziisw qeu4gq  ca1n52cciigqhyiouhyq2siqs1 " /></li>
+</ul>
+<h2 id='tools-amp-library'>Tools &amp; Library</h2>
+<p>GraphQL is implemented over standard HTTP and websocket. So you can choose any http, websocket library like python requests.</p>
+
+<ul>
+<li>A graphical interative in-brower GraphQL IDE : <a href="https://github.com/graphql/graphiql">https://github.com/graphql/graphiql<br>
+</a></li>
+<li>  Python Library : <a href="https://github.com/graphql-python/gql">https://github.com/graphql-python/gql</a></li>
+<li>  Java Library : <a href="https://github.com/apollographql/apollo-android">https://github.com/apollographql/apollo-android</a></li>
+<li>  Node Library : <a href="https://github.com/apollographql/apollo-client">https://github.com/apollographql/apollo-client</a></li>
+<li>  Python websocket library : <a href="https://pypi.org/project/websocket-client/">https://pypi.org/project/websocket-client/</a></li>
+</ul>
+<h2 id='endpoints'>Endpoints</h2>
+<ul>
+<li>  GRAPHQL_ENDPOINT: <a href="https://backend.alli.ai/d/user/">https://backend.alli.ai/d/user/</a></li>
+<li>WEBSOCKET_ENDPOINT: <a href="wss://backend.alli.ai/d/ws/user">wss://backend.alli.ai/d/ws/user</a></li>
+</ul>
+<h2 id='client-chat-api-with-python-example'>Client Chat API with python example</h2><h3 id='full-example'>Full example</h3>
+<ul>
+<li>Please see example https://github.com/allganize/documents/blob/master/alli_api/alli_api_example.py</li>
+</ul>
+<h3 id='start-conversation'>Start conversation</h3>
+<ul>
+<li>https://github.com/allganize/documents/blob/master/alli_api/alli_api_example.py#L195-L217</li>
+<li>You can start conversation using startConversation mutation. </li>
+</ul>
+
+<p><strong>Arguments</strong>
+- placement: String!, placement or url
+- debug: Boolean, If set to true, return debug fields. It contains debug info</p>
+
+<p><strong>Fields</strong>
+- conversation: Conversation, If has matched campaign, returns new conversation. If not, returns null.
+- debug: JSONString, If turn on debug argument, returns debug information</p>
+
+<p><strong>Example</strong></p>
+<pre class="highlight plaintext"><code># Start Conversation  
+gql = """  
+mutation startConversation($v_placement:String!, $v_debug:Boolean) {  
+  startConversation(placement: $v_placement, debug:$v_debug) { 
+    conversation { 
+      id 
+    } debug 
+  }
+}  
+"""  
+
+variables = {  
+    'v_placement': "LANDING",  
+    "v_debug": True  
+}  
+
+result = execute_gql(GRAPHQL_ENDPOINT, gql, variables=variables, headers=headers)  
+conversation = result['data']['startConversation']['conversation']  
+if not conversation:  
+    exit(-1)
+
+conversation_id = conversation['id']
+</code></pre><h3 id='receive-chat-messages-over-web-socket'>Receive chat messages over web socket</h3>
+<p>https://github.com/allganize/documents/blob/master/alli_api/alli_api_example.py#L9-L151</p>
+
+<p><strong>Connect websocket</strong>
+<code>
+self.ws = websocket.WebSocketApp(endpoint,  
+                                 subprotocols=[&#39;graphql-ws&#39;],  
+                                 on_open=self._on_open,  
+                                 on_message=self._on_message,  
+                                 on_error=self.on_error,  
+                                 on_close=self.on_close)
+</code></p>
+
+<p><strong>Send connection_init with auth info</strong>
+```
+def _on_open(self, ws):<br>
+    # After websocket connected, Client should send &quot;connection_init&quot; command with api-key and user-id<br>
+    req = {<br>
+        &quot;type&quot;: &quot;connection_init&quot;,<br>
+        &quot;payload&quot;: {<br>
+            &quot;api-key&quot;: self.api_key,<br>
+            &#39;own-user-id&#39;: self.user_id,<br>
+        }<br>
+    }  </p>
+
+<p>def _connection_ok_and_keepalive(id, resp):<br>
+        # Server sent the CONNECTION ACK messages after connection established.<br>
+        if resp[&#39;type&#39;] == &quot;connection_ack&quot;:<br>
+            # If you receive websocket ack. you can send subscribe request.<br>
+            self._subscribe_chat()<br>
+            return<br>
+        # Server sent the KEEP ALIVE messages every 10 secs.<br>
+        elif resp[&#39;type&#39;] == &quot;ka&quot;:  # Keep alive<br>
+            return<br>
+        self.on_error(ws, &quot;Unknown response &quot; + str(resp))  </p>
+
+<p>self._request(req, _connection_ok_and_keepalive)
+<code>
+**Subscribe chat**
+</code>
+subscribe_chat = {<br>
+    &quot;type&quot;: &quot;start&quot;,<br>
+    &quot;payload&quot;: {<br>
+        &quot;query&quot;: &quot;&quot;&quot;<br>
+        subscription getChats($where:ChatWhereInput!) {<br>
+          chats(where:$where) { 
+            node { 
+              ... on UserChat { 
+                message createdAt 
+              } 
+              ... on AgentChat { 
+                message 
+                createdAt 
+                agent { 
+                  name 
+                } 
+              } 
+              ... on BotChat { 
+                message 
+                createdAt 
+                chatOptions 
+              } 
+              __typename 
+            } 
+          } 
+        }&quot;&quot;&quot;,<br>
+        &quot;variables&quot;: {<br>
+            &quot;where&quot;: {<br>
+                &quot;conversationWhere&quot;: {<br>
+                    &quot;id&quot;: self.conversation_id<br>
+                }<br>
+            }<br>
+        }<br>
+    }<br>
+}
+...
+self._request(subscribe_chat, _receive_chat)
+```</p>
+<h3 id='send-chat'>Send chat</h3><pre class="highlight plaintext"><code># Send Text Message  
+gql = """  
+mutation sendChat($v_convId:ID!, $v_message:String) {  
+  sendChat(conversationId: $v_convId, message:$v_message) { 
+    chat { 
+      ... on UserChat { 
+        message 
+        createdAt 
+      } 
+      __typename 
+    } 
+  }
+}  
+"""  
+
+variables = {  
+    'v_convId': conversation_id,  
+    "v_message": "Hello"  
+}  
+result = execute_gql(GRAPHQL_ENDPOINT, gql, variables=variables, headers=headers)
+</code></pre>
